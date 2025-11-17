@@ -15,7 +15,10 @@ Turn your Google Drive into a fast CDN. Upload files via API, serve them globall
 
 Perfect for hosting images/videos for your portfolio site.
 
-Before you dive in, check out my other related project for a Telegram image hosting CDN: https://github.com/tas33n/telegram-image-hosting.
+
+> **My Other Project:**  
+> I built a Telegram-powered image hosting CDN you might find useful:  
+> https://github.com/tas33n/telegram-image-hosting
 
 ## Quick Start
 
