@@ -15,7 +15,7 @@ const FILE_COUNT_CACHE_KEY = 'dashboard:file_counts';
 const FILE_COUNT_CACHE_TTL_MS = 5 * 60 * 1000;
 const DEFAULT_FILE_PAGE_SIZE = 24;
 const DASHBOARD_VERSION = typeof process !== 'undefined' && process.env?.npm_package_version ? process.env.npm_package_version : '1.0.0';
-const DASHBOARD_ASSET_BASE = 'https://cdn.jsdelivr.net/gh/tas33n/google-drive-cdn-worker/src/assets/';
+const DASHBOARD_ASSET_BASE = 'https://cdn.jsdelivr.net/gh/tas33n/Google-drive-cdn-worker@main/src/assets';
 const DEFAULT_ASSET_CONFIG = {
 	cssUrl: `${DASHBOARD_ASSET_BASE}/main.css`,
 	jsUrl: `${DASHBOARD_ASSET_BASE}/main.js`,
