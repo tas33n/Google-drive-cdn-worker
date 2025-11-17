@@ -1,0 +1,33 @@
+name = "cdn-bevore"
+main = "src/worker-api.js"
+compatibility_date = "2024-11-06"
+compatibility_flags = ["nodejs_compat"]
+
+# Rules for bundling additional files
+[[rules]]
+type = "Data"
+globs = ["src/service-accounts.json"]
+fallthrough = true
+
+[[rules]]
+type = "Text"
+globs = [
+    "src/index.html"
+]
+fallthrough = true
+
+# Environment variables
+[vars]
+DRIVE_UPLOAD_ROOT = "1HVIglvpGvWRR9bJwHNoic8pCq3kasHzO"
+API_TOKENS = "123456789"
+CDN_BASE_URL = "https://cdn.bevore.me"
+
+# KV namespace for storing upload sessions and statistics
+[[kv_namespaces]]
+binding = "UPLOAD_SESSIONS"
+id = "5ca025064cae49a2806674629fce764f"
+
+# KV namespace for statistics
+[[kv_namespaces]]
+binding = "STATS"
+id = "da1a2d10ce5f4a6bb1f30d6231355817"

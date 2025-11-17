@@ -1,0 +1,41 @@
+{
+  "name": "google-drive-cdn-worker",
+  "version": "1.0.0",
+  "private": false,
+  "type": "module",
+  "scripts": {
+    "deploy": "wrangler deploy",
+    "start": "wrangler dev",
+    "dev": "wrangler dev",
+    "bootstrap:google": "node scripts/bootstrap-google-credentials.mjs",
+    "bootstrap:service-accounts": "node scripts/bootstrap-service-accounts.mjs"
+  },
+  "dependencies": {
+    "picocolors": "^1.1.1"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20241106.0",
+    "googleapis": "^144.0.0",
+    "typescript": "^5.6.3",
+    "wrangler": "^4.47.0"
+  },
+  "description": "Transform your Google Drive into a CDN service using Cloudflare Workers. Upload files via API and serve them publicly through a fast CDN endpoint.",
+  "main": "src/worker-api.js",
+  "keywords": [
+    "google-drive",
+    "cdn",
+    "cloudflare-workers",
+    "file-hosting",
+    "media-cdn",
+    "drive-api"
+  ],
+  "author": "tas33n",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tas33n/google-drive-cdn-worker.git"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

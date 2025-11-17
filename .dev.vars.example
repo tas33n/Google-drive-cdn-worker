@@ -1,0 +1,23 @@
+# Copy this file to `.dev.vars` for local `wrangler dev` sessions.
+# These values override remote secrets so you can test without touching production.
+
+# API access
+API_TOKENS="dev-token-1,dev-token-2"
+
+# Google Drive configuration
+DRIVE_UPLOAD_ROOT="root" # or a folder ID printed by the bootstrap script
+CDN_BASE_URL="http://127.0.0.1:8787"
+
+# Service-account options (pick one approach)
+# 1) Inline JSON (use numbered suffixes)
+GDRIVE_SERVICE_ACCOUNT_0='{"type":"service_account","project_id":"demo",...}'
+
+# 2) External URL
+SERVICE_ACCOUNTS_URL=""
+
+# OAuth fallback (if not using service accounts)
+GOOGLE_CLIENT_ID=""
+GOOGLE_CLIENT_SECRET=""
+GOOGLE_REFRESH_TOKEN=""
+
+# Leave empty if you only rely on bundled service-accounts.json

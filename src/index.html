@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Primary Meta Tags -->
+    <title>🚀 Google Drive CDN Worker</title>
+    <meta name="title" content="🚀 Google Drive CDN Worker" />
+    <meta name="description"
+        content="A simple dashboard for your Google Drive CDN. Upload files through an API, serve them globally via Cloudflare Workers, and monitor usage in one place." />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:title" content="Google Drive CDN Dashboard" />
+    <meta property="og:description"
+        content="Manage your Google Drive CDN with an easy dashboard. Upload files, deliver them through Cloudflare's global edge, and track usage in real time." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://cdn.jsdelivr.net/gh/tas33n/google-drive-cdn-worker/src/assets/og.webp" />
+    <meta property="og:url" content="https://cdn.bevore.me" />
+    <meta property="og:site_name" content="Google Drive CDN Dashboard" />
+
+    <!-- X (Twitter) -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Google Drive CDN Dashboard" />
+    <meta name="twitter:description"
+        content="Turn your Google Drive into a fast CDN. Upload via API, serve through Cloudflare Workers, and monitor usage in one place." />
+    <meta name="twitter:image"
+        content="https://cdn.jsdelivr.net/gh/tas33n/google-drive-cdn-worker/src/assets/og.webp" />
+
+    <link rel="stylesheet" href="__DASHBOARD_CSS_URL__">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Hero Header -->
+    <header class="hero-header" id="heroHeader">
+        <div class="site-navbar" id="siteNavbar">
+            <div class="container">
+                <div class="navbar-content">
+                    <div class="navbar-brand">
+                        <img src="https://cdn.jsdelivr.net/gh/tas33n/google-drive-cdn-worker/src/assets/logo.png"
+                            alt="Google Drive CDN logo" class="brand-logo">
+                        <div class="brand-copy">
+                            <span class="brand-label brand-label--long">Google Drive CDN</span>
+                            <span class="brand-label brand-label--short">GD CDN</span>
+                            <small>Worker dashboard</small>
+                        </div>
+                    </div>
+                    <div class="navbar-right">
+                        <button class="md-icon-button" data-theme-toggle title="Toggle theme">
+                            <i class="ri-contrast-2-line" data-theme-icon></i>
+                        </button>
+                        <a href="https://github.com/tas33n/google-drive-cdn-worker" target="_blank"
+                            class="md-icon-button" title="GitHub">
+                            <i class="ri-github-line"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="navbar-placeholder" aria-hidden="true"></div>
+        <div class="hero-surface container">
+            <div class="hero-layout">
+                <div class="hero-intro">
+                    <p class="hero-kicker">Google Drive CDN dashboard</p>
+                    <h1>Manage your Google Drive CDN</h1>
+                    <p class="hero-slogan">Upload files via API, serve them through Cloudflare Workers, and watch usage
+                        in one place.</p>
+                    <div class="hero-actions">
+                        <a href="https://github.com/tas33n/google-drive-cdn-worker" target="_blank"
+                            class="md-button md-button--filled">
+                            <i class="ri-github-line"></i>
+                            View GitHub
+                        </a>
+                        <a href="/docs" class="md-button md-button--tonal">
+                            <i class="ri-book-2-line"></i>
+                            Api Docs
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-panel">
+                    <div class="hero-card--globe">
+                        <div class="hero-globe">
+                            <svg class="globe-svg" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+                                <defs>
+                                    <radialGradient id="globeGradient" cx="35%" cy="35%">
+                                        <stop offset="0%" style="stop-color:#4facfe;stop-opacity:0.8" />
+                                        <stop offset="50%" style="stop-color:#2563eb;stop-opacity:0.6" />
+                                        <stop offset="100%" style="stop-color:#1e3a8a;stop-opacity:0.9" />
+                                    </radialGradient>
+                                    <radialGradient id="glowGradient" cx="50%" cy="50%">
+                                        <stop offset="0%" style="stop-color:#60a5fa;stop-opacity:0.3" />
+                                        <stop offset="100%" style="stop-color:#1e40af;stop-opacity:0" />
+                                    </radialGradient>
+                                    <filter id="glow">
+                                        <feGaussianBlur stdDeviation="2" result="coloredBlur" />
+                                        <feMerge>
+                                            <feMergeNode in="coloredBlur" />
+                                            <feMergeNode in="SourceGraphic" />
+                                        </feMerge>
+                                    </filter>
+                                </defs>
+
+                                <!-- Outer glow -->
+                                <circle cx="200" cy="200" r="120" fill="url(#glowGradient)" opacity="0.4">
+                                    <animate attributeName="r" values="120;130;120" dur="3s" repeatCount="indefinite" />
+                                </circle>
+
+                                <!-- Main globe sphere -->
+                                <circle cx="200" cy="200" r="95" fill="url(#globeGradient)" filter="url(#glow)" />
+
+                                <!-- Latitude lines -->
+                                <g class="latitude-lines" stroke="rgba(255,255,255,0.2)" stroke-width="1" fill="none">
+                                    <ellipse cx="200" cy="200" rx="95" ry="20" />
+                                    <ellipse cx="200" cy="200" rx="95" ry="40" />
+                                    <ellipse cx="200" cy="200" rx="95" ry="60" />
+                                    <ellipse cx="200" cy="200" rx="95" ry="80" />
+                                    <line x1="105" y1="200" x2="295" y2="200" />
+                                    <animateTransform attributeName="transform" attributeType="XML" type="rotate"
+                                        from="0 200 200" to="360 200 200" dur="20s" repeatCount="indefinite" />
+                                </g>
+
+                                <!-- Longitude lines -->
+                                <g class="longitude-lines" stroke="rgba(255,255,255,0.15)" stroke-width="1" fill="none">
+                                    <ellipse cx="200" cy="200" rx="15" ry="95" />
+                                    <ellipse cx="200" cy="200" rx="35" ry="95" />
+                                    <ellipse cx="200" cy="200" rx="55" ry="95" />
+                                    <ellipse cx="200" cy="200" rx="75" ry="95" />
+                                    <ellipse cx="200" cy="200" rx="95" ry="95" />
+                                    <animateTransform attributeName="transform" attributeType="XML" type="rotate"
+                                        from="0 200 200" to="360 200 200" dur="25s" repeatCount="indefinite" />
+                                </g>
+
+                                <!-- Continents (simplified) -->
+                                <g class="continents" fill="rgba(34,211,153,0.3)" stroke="rgba(34,211,153,0.6)"
+                                    stroke-width="1.5">
+                                    <!-- North America -->
+                                    <path d="M 150,140 Q 160,130 170,135 T 180,145 Q 175,155 170,160 T 155,155 Z">
+                                        <animateTransform attributeName="transform" attributeType="XML" type="rotate"
+                                            from="0 200 200" to="360 200 200" dur="20s" repeatCount="indefinite" />
+                                    </path>
+                                    <!-- Europe -->
+                                    <path d="M 205,150 Q 215,145 220,150 T 225,160 Q 220,165 210,165 Z">
+                                        <animateTransform attributeName="transform" attributeType="XML" type="rotate"
+                                            from="0 200 200" to="360 200 200" dur="20s" repeatCount="indefinite" />
+                                    </path>
+                                    <!-- Africa -->
+                                    <path d="M 210,180 Q 220,175 225,185 T 220,205 Q 210,210 205,200 Z">
+                                        <animateTransform attributeName="transform" attributeType="XML" type="rotate"
+                                            from="0 200 200" to="360 200 200" dur="20s" repeatCount="indefinite" />
+                                    </path>
+                                    <!-- Asia -->
+                                    <path d="M 235,155 Q 250,150 260,160 T 265,180 Q 255,190 240,185 Z">
+                                        <animateTransform attributeName="transform" attributeType="XML" type="rotate"
+                                            from="0 200 200" to="360 200 200" dur="20s" repeatCount="indefinite" />
+                                    </path>
+                                    <!-- Australia -->
+                                    <path d="M 250,230 Q 260,225 265,235 T 255,245 Z">
+                                        <animateTransform attributeName="transform" attributeType="XML" type="rotate"
+                                            from="0 200 200" to="360 200 200" dur="20s" repeatCount="indefinite" />
+                                    </path>
+                                </g>
+
+                                <!-- Orbiting satellites/signals -->
+                                <g class="satellites">
+                                    <circle cx="200" cy="200" r="3" fill="#60a5fa">
+                                        <animateTransform attributeName="transform" attributeType="XML" type="rotate"
+                                            from="0 200 200" to="360 200 200" dur="8s" repeatCount="indefinite" />
+                                        <animateTransform attributeName="transform" attributeType="XML" type="translate"
+                                            additive="sum" values="0,-110; 0,-110; 0,-110" dur="8s"
+                                            repeatCount="indefinite" />
+                                    </circle>
+                                    <circle cx="200" cy="200" r="3" fill="#c084fc">
+                                        <animateTransform attributeName="transform" attributeType="XML" type="rotate"
+                                            from="120 200 200" to="480 200 200" dur="12s" repeatCount="indefinite" />
+                                        <animateTransform attributeName="transform" attributeType="XML" type="translate"
+                                            additive="sum" values="0,-120; 0,-120; 0,-120" dur="12s"
+                                            repeatCount="indefinite" />
+                                    </circle>
+                                    <circle cx="200" cy="200" r="3" fill="#34d399">
+                                        <animateTransform attributeName="transform" attributeType="XML" type="rotate"
+                                            from="240 200 200" to="600 200 200" dur="10s" repeatCount="indefinite" />
+                                        <animateTransform attributeName="transform" attributeType="XML" type="translate"
+                                            additive="sum" values="0,-105; 0,-105; 0,-105" dur="10s"
+                                            repeatCount="indefinite" />
+                                    </circle>
+                                </g>
+
+                                <!-- Orbital rings -->
+                                <circle cx="200" cy="200" r="115" fill="none" stroke="rgba(125,211,252,0.3)"
+                                    stroke-width="1" stroke-dasharray="5,5">
+                                    <animateTransform attributeName="transform" attributeType="XML" type="rotate"
+                                        from="0 200 200" to="360 200 200" dur="15s" repeatCount="indefinite" />
+                                </circle>
+                                <circle cx="200" cy="200" r="125" fill="none" stroke="rgba(167,139,250,0.3)"
+                                    stroke-width="1" stroke-dasharray="3,7">
+                                    <animateTransform attributeName="transform" attributeType="XML" type="rotate"
+                                        from="0 200 200" to="-360 200 200" dur="18s" repeatCount="indefinite" />
+                                </circle>
+                            </svg>
+                        </div>
+                        <div class="hero-globe-meta">
+                            <div class="hero-status hero-status--soft">
+                                <span class="status-dot"></span>
+                                CDN is online
+                            </div>
+                            <h3>Global delivery via Cloudflare</h3>
+                            <p>Files are served from Google Drive through Cloudflare Worker and cached at edge locations
+                                worldwide.</p>
+                            <ul class="hero-globe-points">
+                                <li>
+                                    <i class="ri-map-pin-2-line"></i>
+                                    285+ Cloudflare edge locations
+                                </li>
+                                <li>
+                                    <i class="ri-speed-up-line"></i>
+                                    Fast responses from nearby regions
+                                </li>
+                                <li>
+                                    <i class="ri-shield-keyhole-line"></i>
+                                    All traffic proxied through your Worker
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </header>
+    <main class="main">
+        <div class="container">
+            <!-- CDN Stats -->
+            <div class="stats-grid">
+                <article class="stat-card">
+                    <div class="stat-card-meta">
+                        <span class="stat-icon stat-icon--upload">
+                            <i class="ri-upload-cloud-2-line"></i>
+                        </span>
+                        <div>
+                            <p>Total Uploads</p>
+                            <small>Files uploaded via API</small>
+                        </div>
+                    </div>
+                    <div class="stat-card-value" id="statUploads">--</div>
+                </article>
+                <article class="stat-card">
+                    <div class="stat-card-meta">
+                        <span class="stat-icon stat-icon--requests">
+                            <i class="ri-pulse-line"></i>
+                        </span>
+                        <div>
+                            <p>CDN Requests</p>
+                            <small>Requests served from CDN</small>
+                        </div>
+                    </div>
+                    <div class="stat-card-value" id="statRequests">--</div>
+                </article>
+                <article class="stat-card">
+                    <div class="stat-card-meta">
+                        <span class="stat-icon stat-icon--deletes">
+                            <i class="ri-eraser-line"></i>
+                        </span>
+                        <div>
+                            <p>Files Deleted</p>
+                            <small>Files removed from CDN</small>
+                        </div>
+                    </div>
+                    <div class="stat-card-value" id="statDeletes">--</div>
+                </article>
+                <article class="stat-card">
+                    <div class="stat-card-meta">
+                        <span class="stat-icon stat-icon--used">
+                            <i class="ri-hard-drive-2-line"></i>
+                        </span>
+                        <div>
+                            <p>Space Used</p>
+                            <small>Used Drive space</small>
+                        </div>
+                    </div>
+                    <div class="stat-card-value" id="statSpaceUsed">--</div>
+                </article>
+                <article class="stat-card">
+                    <div class="stat-card-meta">
+                        <span class="stat-icon stat-icon--total">
+                            <i class="ri-database-2-line"></i>
+                        </span>
+                        <div>
+                            <p>Space Total</p>
+                            <small>Total Drive quota</small>
+                        </div>
+                    </div>
+                    <div class="stat-card-value" id="statSpaceTotal">--</div>
+                </article>
+                <article class="stat-card">
+                    <div class="stat-card-meta">
+                        <span class="stat-icon stat-icon--files">
+                            <i class="ri-file-list-2-line"></i>
+                        </span>
+                        <div>
+                            <p>Total Files</p>
+                            <small>Files tracked by the CDN</small>
+                        </div>
+                    </div>
+                    <div class="stat-card-value" id="statTotalFiles">--</div>
+                </article>
+            </div>
+
+            <!-- Connected Drives -->
+            <section class="drive-section">
+                <div class="section-header">
+                    <h3>Connected Drives</h3>
+                    <div class="section-info">
+                        <span>Live Google Drive usage</span>
+                        <span class="badge badge--soft" id="driveMetaLabel">Waiting for data</span>
+                    </div>
+                </div>
+                <div class="drive-grid" id="driveGrid">
+                    <article class="drive-card drive-card--primary">
+                        <header class="drive-card-header">
+                            <div>
+                                <h4>Primary Drive</h4>
+                                <p>Default upload target</p>
+                            </div>
+                            <span class="drive-badge">Active</span>
+                        </header>
+                        <div class="drive-usage">
+                            <div class="usage-bar">
+                                <div class="usage-fill" id="storageUsageFill" style="width: 0%"></div>
+                            </div>
+                            <div class="usage-text">
+                                <span id="storageUsedLabel">-- used</span>
+                                <span id="storageTotalLabel">-- total</span>
+                            </div>
+                        </div>
+                        <div class="drive-meta">
+                            <div>
+                                <span>Files</span>
+                                <strong id="storageFileCount">--</strong>
+                            </div>
+                            <div>
+                                <span>Folders</span>
+                                <strong id="storageFolderCount">--</strong>
+                            </div>
+                            <div>
+                                <span>Uptime</span>
+                                <strong id="storageUptime">--</strong>
+                            </div>
+                        </div>
+                    </article>
+                    <div id="driveGridExtras"></div>
+                </div>
+            </section>
+
+            <!-- Hosted Assets Section -->
+            <div class="assets-section">
+                <div class="section-header">
+                    <h3>Hosted Assets</h3>
+                    <div class="section-info">
+                        <span id="assetCount">Loading assets from Google Drive...</span>
+                        <span class="sort-info">Sorted by Name (ascending)</span>
+                    </div>
+                </div>
+
+                <!-- Asset Search and Filter Controls -->
+                <div class="controls">
+                    <div class="search-box">
+                        <i class="ri-search-line search-icon"></i>
+                        <input type="text" placeholder="Search assets..." class="search-input" id="assetSearchInput">
+                        <button class="filter-btn">
+                            <i class="ri-filter-line"></i>
+                        </button>
+                    </div>
+
+                    <div class="filter-pills">
+                        <button class="filter-pill active" data-type="all">
+                            <i class="ri-stack-line"></i>
+                            All Assets
+                        </button>
+                        <button class="filter-pill" data-type="images">
+                            <i class="ri-image-line"></i>
+                            Images
+                        </button>
+                        <button class="filter-pill" data-type="documents">
+                            <i class="ri-file-text-line"></i>
+                            Documents
+                        </button>
+                        <button class="filter-pill" data-type="code">
+                            <i class="ri-code-s-slash-line"></i>
+                            Code
+                        </button>
+                        <button class="filter-pill" data-type="data">
+                            <i class="ri-database-line"></i>
+                            Data
+                        </button>
+                        <button class="filter-pill" data-type="video">
+                            <i class="ri-movie-line"></i>
+                            Video
+                        </button>
+                        <button class="filter-pill" data-type="audio">
+                            <i class="ri-music-line"></i>
+                            Audio
+                        </button>
+                    </div>
+                    <div class="filter-status" id="filterStatus" aria-live="polite" hidden>
+                        <i class="ri-loader-4-line"></i>
+                        <span>Fetching assets...</span>
+                    </div>
+                </div>
+
+                <!-- Asset File Grid -->
+                <div class="file-grid" id="fileGrid">
+                    <!-- Files will be loaded dynamically -->
+                </div>
+                <div class="load-more-row">
+                    <button type="button" class="load-more-btn" id="fileLoadMore">Load more files</button>
+                    <div class="loading-indicator" id="fileLoadingIndicator"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="app-footer">
+        <div class="container footer-content">
+            <div class="footer-brand">
+                <img src="https://cdn.jsdelivr.net/gh/tas33n/google-drive-cdn-worker/src/assets/logo.png"
+                    alt="Google Drive CDN logo" class="brand-logo brand-logo--xs">
+                <div>
+                    <p>Google Drive CDN</p>
+                    <small id="footerVersion">Version --</small>
+                </div>
+            </div>
+            <div class="footer-meta footer-meta--slim">
+                <div class="footer-note" id="footerBuildNote">Built with care by
+                    <a href="https://github.com/tas33n" target="_blank" rel="noopener">
+                        tas33n
+                        <i class="ri-github-line"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- File Viewer Modal -->
+    <div class="modal" id="fileModal">
+        <div class="modal-overlay" onclick="closeFileModal()"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modalTitle">File Details</h3>
+                <button class="modal-close" onclick="closeFileModal()">
+                    <i class="ri-close-line"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- File details will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="__DASHBOARD_JS_URL__" defer></script>
+</body>
+
+</html>
