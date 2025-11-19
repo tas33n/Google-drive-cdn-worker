@@ -5,6 +5,8 @@ Turn your Google Drive into a fast CDN. Upload files via API, serve them globall
 [![Cloudflare Workers](https://img.shields.io/badge/Cloudflare-Workers-F38020?logo=cloudflare)](https://workers.cloudflare.com)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
+> **Live running:** [https://cdn.bevore.me](https://cdn.bevore.me)
+
 ## What It Does
 
 - **Upload files** via API (requires auth)
