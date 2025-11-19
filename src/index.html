@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
 
     <!-- Primary Meta Tags -->
     <title>🚀 Google Drive CDN Worker</title>
@@ -69,10 +69,9 @@
         <div class="hero-surface container">
             <div class="hero-layout">
                 <div class="hero-intro">
-                    <p class="hero-kicker">Google Drive CDN dashboard</p>
+                    <p class="hero-kicker">Personal Content Delivery Network</p>
                     <h1>Manage your Google Drive CDN</h1>
-                    <p class="hero-slogan">Upload files via API, serve them through Cloudflare Workers, and watch usage
-                        in one place.</p>
+                    <p class="hero-slogan">Upload files programmatically via API, deliver them globally through Cloudflare Workers, and monitor performance metrics in real-time.</p>
                     <div class="hero-actions">
                         <a href="https://github.com/tas33n/google-drive-cdn-worker" target="_blank"
                             class="md-button md-button--filled">
@@ -317,7 +316,7 @@
                     <h3>Connected Drives</h3>
                     <div class="section-info">
                         <span>Live Google Drive usage</span>
-                        <span class="badge badge--soft" id="driveMetaLabel">Waiting for data</span>
+                        <span class="badge badge--soft" id="driveMetaLabel">Initializing</span>
                     </div>
                 </div>
                 <div class="drive-grid" id="driveGrid">
@@ -362,7 +361,7 @@
                 <div class="section-header">
                     <h3>Hosted Assets</h3>
                     <div class="section-info">
-                        <span id="assetCount">Loading assets from Google Drive...</span>
+                        <span id="assetCount">Retrieving assets from Google Drive...</span>
                         <span class="sort-info">Sorted by Name (ascending)</span>
                     </div>
                 </div>
@@ -371,7 +370,7 @@
                 <div class="controls">
                     <div class="search-box">
                         <i class="ri-search-line search-icon"></i>
-                        <input type="text" placeholder="Search assets..." class="search-input" id="assetSearchInput">
+                        <input type="text" placeholder="Search assets by name..." class="search-input" id="assetSearchInput">
                         <button class="filter-btn">
                             <i class="ri-filter-line"></i>
                         </button>

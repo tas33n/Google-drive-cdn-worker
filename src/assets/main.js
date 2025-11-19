@@ -259,8 +259,8 @@ function formatRelativeTime(timestamp) {
 function renderDriveGrid(storage = {}, files = {}) {
     if (driveMetaLabel) {
         driveMetaLabel.textContent = storage.timestamp
-            ? `Snapshot ${formatRelativeTime(storage.timestamp)}`
-            : 'Waiting for data';
+            ? `Last updated ${formatRelativeTime(storage.timestamp)}`
+            : 'Initializing';
     }
     if (!driveGridExtras) {
         return;
@@ -457,10 +457,10 @@ function renderFiles() {
         const hasFilters = currentFilter !== 'all' || Boolean(currentSearch);
         const shouldShowLoading = isAwaitingRemoteUpdate || (isLoadingFiles && !hasCompletedInitialLoad);
         if (shouldShowLoading) {
-            const loaderTitle = hasFilters ? 'Applying filters' : 'Fetching assets';
+            const loaderTitle = hasFilters ? 'Applying filters' : 'Loading assets';
             const loaderMessage = currentSearch
-                ? 'Searching your worker for matches...'
-                : 'Retrieving the latest files, hang tight.';
+                ? 'Searching for matching assets...'
+                : 'Retrieving assets from Google Drive. Please wait.';
             fileGrid.innerHTML = `
                 <div class="no-results no-results--loading">
                     <i class="ri-loader-4-line"></i>
@@ -469,10 +469,10 @@ function renderFiles() {
                 </div>
             `;
         } else {
-            const title = hasFilters ? 'No matching assets' : 'No assets found';
+            const title = hasFilters ? 'No matching assets found' : 'No assets available';
             const message = hasFilters
-                ? 'Try a different filter or search query.'
-                : 'Nothing has been synced yet. Upload files via the API and refresh.';
+                ? 'Please adjust your filter criteria or search query to find assets.'
+                : 'No assets have been synchronized yet. Upload files via the API and refresh the dashboard.';
             fileGrid.innerHTML = `
                 <div class="no-results">
                     <i class="ri-search-line"></i>
@@ -561,11 +561,11 @@ function createFileCard(file, index = 0) {
 function updateFileCount() {
     if (!assetCount) return;
     if (!filteredFiles.length && (isAwaitingRemoteUpdate || (isLoadingFiles && !hasCompletedInitialLoad))) {
-        assetCount.textContent = 'Fetching assets...';
+        assetCount.textContent = 'Retrieving assets...';
         return;
     }
     if (!filteredFiles.length && !isLoadingFiles) {
-        assetCount.textContent = 'No assets loaded';
+        assetCount.textContent = 'No assets available';
         return;
     }
     const loaded = filteredFiles.length;
